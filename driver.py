@@ -4,10 +4,11 @@ from classifier_src import *
 from music_player_src import *
 from preprocessor_src import *
 
-INTERVAL = 1000 #read from webcam every INTERVAL # of milliseconds
+INTERVAL = 0.01 #read from webcam every INTERVAL # of seconds
 
 class Driver:
-    def __init__(self,interval,
+    def __init__(self,
+                 interval,
                  web_cam,
                  classifier,
                  music_player,
@@ -43,3 +44,15 @@ class Driver:
         self.web_cam.release()
         cv2.destroyAllWindows()
 
+if __name__ =='__main__':
+    web_cam=cv2.VideoCapture(0)
+    preprocessor=Preprocessor()
+    music_player=MusicPlayer()
+    classifier=Classifier()
+    Driver(
+            INTERVAL,
+            web_cam,
+            classifier,
+            music_player,
+            preprocessor
+        ).main()
