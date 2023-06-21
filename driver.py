@@ -41,6 +41,8 @@ class Driver:
             frames+=1
             if self.max_frames!=-1 and frames >=self.max_frames:
                 break
+
+    def __del__(self):
         self.web_cam.release()
         cv2.destroyAllWindows()
 
